@@ -7,4 +7,5 @@ def caseString(x,y,z):
 #end def
 
 if __name__=="__main__":
-  print(caseString(12,"気温",22.4))
+  ans=caseString(12,"気温",22.4)
+  print(ans)

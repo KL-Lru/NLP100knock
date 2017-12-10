@@ -5,6 +5,6 @@ s="Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also S
 words=s.replace(","," ").replace("."," ").split()
 tar=[1,5,6,7,8,9,15,16,19]
 ans={}
-for i in range(0,len(words),1):
+for i in range(len(words)):
   ans[words[i][0:1 if i in tar else 2:1]]=i
 print(ans)
