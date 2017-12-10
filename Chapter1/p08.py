@@ -16,5 +16,5 @@ def cipher(s):
 if __name__=="__main__":
   s="I love Yomi Natsusaki"
   print(s)
-  and=cipher(s)
+  ans=cipher(s)
   print(ans)
