@@ -6,6 +6,6 @@ s="I couldn't believe that I could actually understand what I was reading : the 
 l=s.split()
 for i in range(len(l)):
   if len(l[i])>4 :
-    l[i]=l[i][0]+"".join(random.sample(l[i][1:len(l[i])-1],len(l[i])-2))+l[i][len(l[i])-1]
+    l[i]=l[i][0]+"".join(random.sample(l[i][1:-1],len(l[i])-2))+l[i][-1]
 ans=" ".join(l)
 print(ans)
