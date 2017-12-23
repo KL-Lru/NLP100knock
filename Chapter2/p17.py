@@ -1,5 +1,5 @@
 #
-# awk -F'\t' '{print $1}' hightemp.txt | sort | uniq | wc -l
+# cut -f1 hightemp.txt | sort | uniq | wc -l
 #
 f=open("hightemp.txt","r")
 li={}
