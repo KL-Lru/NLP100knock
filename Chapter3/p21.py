@@ -3,9 +3,5 @@
 #
 from p20 import getjson
 
-s=getjson().split("\n")
-ans=[]
-for st in s:
-    if "Category" in st:
-        ans.append(st)
+ans=[st for st in getjson().split("\n") if "Category" in st]
 print(ans) 

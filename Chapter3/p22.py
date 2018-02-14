@@ -4,9 +4,5 @@
 from p20 import getjson
 import re
 
-s=getjson().split("\n")
-ans=[]
-for st in s:
-    if "Category" in st:
-        ans.append(re.sub("\[.*:(.*).*]]","\\1",st))
+ans=[re.sub(".*\[Category:(.*).*]].*","\\1",st) for st in getjson().split("\n") if "Category" in st]
 print(ans)
