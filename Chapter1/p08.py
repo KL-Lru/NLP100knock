@@ -3,6 +3,7 @@
 #   英小文字ならば(219 - 文字コード)の文字に置換
 #   その他の文字はそのまま出力
 #
+
 def cipher(text):
   res = ""
   for i in range(len(text)):
