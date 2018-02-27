@@ -10,5 +10,5 @@ s=re.sub("'{2,}(.*?)'{2,}","\\1",s,flags=re.DOTALL)
 l=[]
 for i in s.split("\n|")[1:]:
   l.append(re.sub("\[\[(.*?)]]","\\1","[[".join([re.sub("^.*\|","",j) if "]]" in j else j for j in i.split("[[")])))
-  ans={re.sub("^(.*?) = .*","\\1",st,flags=re.DOTALL):re.sub(".* = (.*)","\\1",st,flags=re.DOTALL) for st in l}
+ans={re.sub("^(.*?) = .*","\\1",st,flags=re.DOTALL):re.sub(".* = (.*)","\\1",st,flags=re.DOTALL) for st in l}
 pprint(ans)
