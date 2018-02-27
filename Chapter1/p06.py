@@ -11,12 +11,13 @@ if __name__ == "__main__":
   text1 = "paraparaparadise"
   text2 = "paragraph"
   x = set(n_gram(n = 2,
-                mode = 'char',
-                text = text1
-                ))
+                 mode = 'char',
+                 text = text1
+                 ))
   y = set(n_gram(n = 2,
-                mode = 'char',
-                text = text2))
+                 mode = 'char',
+                 text = text2
+                 ))
   answer = OrderedDict() #確認用に入力した順序を保つ
   answer["union"] = x.union(y)
   answer["intersection"] = x.intersection(y)
