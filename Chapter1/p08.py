@@ -3,18 +3,18 @@
 #   英小文字ならば(219 - 文字コード)の文字に置換
 #   その他の文字はそのまま出力
 #
-def cipher(s):
-  ret=""
-  for i in range(len(s)):
-    if s[i].islower() :
-      ret+=chr(219-ord(s[i]))
+def cipher(text):
+  res = ""
+  for i in range(len(text)):
+    if text[i].islower() :
+      res+=chr(219-ord(text[i]))
     else:
-      ret+=s[i]
-  return ret
+      res+=text[i]
+  return res
 #end def
 
-if __name__=="__main__":
-  s="I love Yomi Natsusaki"
-  print(s)
-  ans=cipher(s)
-  print(ans)
+if __name__ == "__main__":
+  text = "I love Yomi Natsusaki"
+  print(text)
+  answer = cipher(text)
+  print(answer)
