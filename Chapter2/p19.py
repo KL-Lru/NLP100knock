@@ -9,7 +9,7 @@ if __name__ == "__main__":
   cnt_pref = []
   # 内包表現でもいけるけど読みづらい
   # cnt_pref = [[pref.count(x), x] for x in pref if x not in s and not s.add(x)]
-x  for pi in pref:
+  for pi in pref:
     if pi not in s:
       s.add(pi)
       cnt_pref.append([pref.count(pi), pi])
