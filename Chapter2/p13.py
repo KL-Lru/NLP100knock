@@ -1,11 +1,13 @@
 #
 # paste col1.txt col2.txt
 #
-f1=open("col1.txt","r")
-f2=open("col2.txt","r")
-ans=""
-for (i,j) in zip(f1.readlines(),f2.readlines()):
-  ans+=i[:-1]+"\t"+j
-f1.close()
-f2.close()
-print(ans)
+
+if __name__ == "__main__":
+  file1 = open("col1.txt", "r")
+  file2 = open("col2.txt", "r")
+  answer = ""
+  for (fi, fj) in zip(file1.readlines(), file2.readlines()):
+    answer += fi[:-1] + "\t" + fj
+  file1.close()
+  file2.close()
+  print(answer)

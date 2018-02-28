@@ -1,7 +1,9 @@
 #
 # wc -l hightemp.txt
 #
-f=open("hightemp.txt","r")
-ans=len(f.readlines())
-f.close()
-print(ans)
+
+if __name__ == "__main__":
+  file = open("hightemp.txt", "r")
+  answer = len(file.readlines())
+  file.close()
+  print(answer)

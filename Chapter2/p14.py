@@ -1,13 +1,16 @@
 #
 # head -n N hightemp.txt
 #
-n=int(input())
-cnt=0
-f=open("hightemp.txt","r")
-ans=""
-for i in f.readlines():
-  ans+=i
-  cnt+=1
-  if cnt == n:
-    break
-print(ans)
+
+if __name__ == "__main__":
+  n = int(input())
+  cnt = 0
+  file = open("hightemp.txt", "r")
+  answer = ""
+  for line in file.readlines():
+    answer += line
+    cnt += 1
+    if cnt == n:
+      break
+  file.close()
+  print(answer)

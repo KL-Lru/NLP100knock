@@ -1,7 +1,9 @@
 #
 # sed "s/\t/ /g" hightemp.txt
 #
-f=open("hightemp.txt","r")
-ans=f.read().replace("\t"," ")
-f.close()
-print(ans)
+
+if __name__ == "__main__":
+  file=open("hightemp.txt", "r")
+  answer=file.read().replace("\t", " ")
+  file.close()
+  print(answer)
