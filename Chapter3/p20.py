@@ -4,13 +4,13 @@
 import json
 import gzip
 
-def getjson():
-    with gzip.open("jawiki-country.json.gz","rt") as f:
-        for line in f:
-            j=json.loads(line)
-            if "イギリス" == j["title"]:
-                return j["text"]
+def get_json():
+    with gzip.open("jawiki-country.json.gz","rt") as file:
+        for line in file:
+            js=json.loads(line)
+            if "イギリス" == js["title"]:
+                return js["text"]
 
 if __name__ == "__main__":
-    ans=getjson()
-    print(ans)
+    answer=get_json()
+    print(answer)

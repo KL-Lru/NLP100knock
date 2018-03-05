@@ -1,7 +1,9 @@
 #
 # カテゴリの書かれた行を抽出せよ
 #
-from p20 import getjson
+from p20 import get_json
 
-ans=[st for st in getjson().split("\n") if "Category" in st]
-print(ans) 
+if __name__ == "__main__":
+  answer = [line for line in get_json().split("\n") 
+            if "Category" in line]
+  print(answer) 
