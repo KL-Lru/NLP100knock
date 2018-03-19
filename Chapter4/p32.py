@@ -9,5 +9,5 @@ ans=[]
 for i in analy:
   for j in i:
     if j["pos"]=="動詞":
-      ans.append(j["surface"])
+      ans.append(j["base"])
 print(ans)
