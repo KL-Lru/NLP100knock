@@ -13,9 +13,9 @@ if __name__ == "__main__":
              get_json(), 
              flags = DOTALL)
   text_rem = sub("'{2,}(.*?)'{2,}", 
-                        "\\1", 
-                        text, 
-                        flags = DOTALL)
+                 "\\1", 
+                 text, 
+                 flags = DOTALL)
   text_rem = sub("<.*?>",
                  "",
                  text_rem,
