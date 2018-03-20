@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # 基礎情報を辞書型に格納せよ(強調マークアップをテキストに変換)
 #
@@ -10,12 +11,20 @@ if __name__ == "__main__":
   text = sub(".*(\{\{基礎情報.*?\n)}}.*", 
              "\\1", 
              get_json(), 
-             flags = DOTALL
-             )
-  text = sub("'{2,}(.*?)'{2,}", 
-             "\\1", 
-             text, 
-             flags = DOTALL
-             )
-  ans={re.sub("^(.*?) = .*","\\1",st,flags=re.DOTALL):re.sub(".* = (.*)","\\1",st,flags=re.DOTALL) for st in s.split("\n|")[1:]}
-  pprint(ans)
+             flags = DOTALL)
+  text_rem = sub("'{2,}(.*?)'{2,}", 
+                 "\\1", 
+                 text, 
+                 flags = DOTALL)
+  answer = {}
+  for line in text_rem.split("\n|")[1:]:
+    key = sub("^(.*?) = .*", 
+               "\\1", 
+               line, 
+               flags = DOTALL)
+    value = sub(".* = (.*)", 
+                "\\1", 
+                line, 
+                flags = DOTALL)
+    answer[key] = value
+  pprint(answer)

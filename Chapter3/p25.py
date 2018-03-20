@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # 基礎情報を辞書型に格納せよ
 #
@@ -12,16 +13,16 @@ if __name__ == "__main__":
   text = sub(".*\{\{(基礎情報.*?)\n}}.*", 
              "\\1", 
              get_json(), 
-             flags = DOTALL
-             )
-  answer={}
+             flags = DOTALL)
+  answer = {}
   for line in text.split("\n|")[1:]:
-    answer[sub("^(.*?) = .*", 
-           "\\1", 
-           line, 
-           flags = DOTALL
-           )] = sub(".* = (.*)", 
-                    "\\1", 
-                    line, 
-                    flags = DOTALL)
+    key = sub("^(.*?) = .*", 
+               "\\1", 
+               line, 
+               flags = DOTALL)
+    value = sub(".* = (.*)", 
+                "\\1", 
+                line, 
+                flags = DOTALL)
+    answer[key] = value
   pprint(answer)
