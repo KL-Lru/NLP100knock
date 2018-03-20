@@ -1,13 +1,15 @@
+#!/usr/bin/env python3
 #
 # サ変接続の名詞を全て抽出せよ
 #
 
 from p30 import get_mecab
 
-analy=get_mecab()
-ans=[]
-for i in analy:
-  for j in i:
-    if j["pos1"]=="サ変接続":
-      ans.append(j["base"])
-print(ans)
+if __name__ == "__main__":
+  analysis = get_mecab()
+  answer = []
+  for ai in analysis:
+    for aj in ai:
+      if aj["pos1"] == "サ変接続":
+        answer.append(aj["base"])
+  print(answer)

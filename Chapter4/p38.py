@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # 
 # 単語の出現頻度のヒストグラムを描け
 # 
@@ -8,29 +9,34 @@ from subprocess import Popen
 from subprocess import PIPE
 from pprint import pprint
 
-analy=get_mecab()
-calc={}
-for i in analy:
-  for j in i:
-    if j["base"] in calc.keys():
-      calc[j["base"]]+=1
+if __name__ == "__main__":
+  analysis = get_mecab()
+  calc = {}
+  for ai in analysis:
+    for aj in ai:
+      if aj["base"] in calc.keys():
+        calc[aj["base"]] += 1
+      else:
+        calc[aj["base"]] = 1
+  cnt = {}
+  for ci in calc:
+    if calc[ci] in cnt.keys():
+      cnt[calc[ci]]+=1
     else:
-      calc[j["base"]]=1
-res ={}
-for i in calc:
-  if calc[i] in res.keys():
-    res[calc[i]]+=1
-  else:
-    res[calc[i]]=1
-res = sorted(res.items(),key=itemgetter(0),reverse=False)
-res = "\n".join([str(x[0])+" "+str(x[1]) for x in res])
+      cnt[calc[ci]]=1
+  data = sorted(cnt.items(),
+                key = itemgetter(0),
+                reverse = False)
+  data = "\n".join([str(x[0]) + " " + str(x[1]) for x in data])
 
-gncmd=b"""
-set terminal xterm
-set xrange[0:100]
-plot '-' using 1:2 with boxes notitle
-"""
+  gncmd = """
+  set terminal xterm
+  set xrange[0:100]
+  plot '-' using 1:2 with boxes notitle
+  """
 
-plot=Popen([ "gnuplot", "-e"],stdin=PIPE,shell=True).stdin
-plot.write(gncmd)
-plot.write(res.encode())
+  plot = Popen(["gnuplot", "-e"],
+               stdin = PIPE,
+               shell = True).stdin
+  plot.write(gncmd.encode())
+  plot.write(data.encode())

@@ -9,20 +9,21 @@ from pprint import pprint
 
 def get_mecab():
   file=open("neko.txt.mecab","r")
-  res=[]
-  sentences=[]
+  res = []
+  sentence = []
   for line in file.readlines():
     if line == "EOS\n":
-      res.append(sentences)
-      sentences=[]
+      res.append(sentence)
+      sentence = []
       continue
-    analy=line[:-1].split(",") #改行記号抜き
-    s={"surface":analy[0],
-      "base":analy[7],
-      "pos":analy[1],
-      "pos1":analy[2]}
-    sent.append(s)
+    analysis = line[:-1].split(",") #改行記号抜き
+    info = {"surface":analysis[0],
+            "base":analysis[7],
+            "pos":analysis[1],
+            "pos1":analysis[2]}
+    sentence.append(info)
   return res
 
 if __name__ == "__main__":
-  pprint(get_mecab())
+  answer = get_mecab()
+  pprint(answer)
