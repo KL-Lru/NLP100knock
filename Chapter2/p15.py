@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # tail -n N hightemp.txt
 #

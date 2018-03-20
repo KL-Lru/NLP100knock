@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # cut -f1 hightemp.txt | sort | uniq | wc -l
 #

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # sort -k3 hightemp.txt
 #

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # sed "s/\t/ /g" hightemp.txt
 #

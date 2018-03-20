@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #
 # wc -l hightemp.txt
 #
