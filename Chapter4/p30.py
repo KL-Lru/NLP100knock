@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # mecab -F "%m,%H\n" neko.txt > neko.txt.mecab
+# ↑これでmecabファイルを作ると区切りが全てカンマになるので楽になる
 # 
 # 形態素解析結果を読み込め
 #
@@ -6,13 +8,13 @@
 from pprint import pprint
 
 def get_mecab():
-  f=open("neko.txt.mecab","r")
+  file=open("neko.txt.mecab","r")
   res=[]
-  sent=[]
-  for line in f.readlines():
+  sentences=[]
+  for line in file.readlines():
     if line == "EOS\n":
-      res.append(sent)
-      sent=[]
+      res.append(sentences)
+      sentences=[]
       continue
     analy=line[:-1].split(",") #改行記号抜き
     s={"surface":analy[0],
