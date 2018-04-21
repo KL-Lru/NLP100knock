@@ -27,8 +27,11 @@ class Chunk:
   def fout(self):
     for i in self.morphs:
       i.fout()
+  
+  def morst(self):
+    return "".join([i.surst() for i in self.morphs])
 
-if __name__ == "__main__":
+def getChunk():
   f=open("neko.txt.cabocha","r")
   l=[]
   s=[]
@@ -54,5 +57,9 @@ if __name__ == "__main__":
       s=[]
     else:
       c.add_morph(Morph(a[0],a[7],a[1],a[2]))
+  return l
+
+if __name__ == "__main__":
+  l=getChunk()
   for i in l[8]:
     i.out() 

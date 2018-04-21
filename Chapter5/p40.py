@@ -18,6 +18,9 @@ class Morph:
   def fout(self):
     print(self.surface,end="")
 
+  def surst(self):
+    return self.surface
+
 if __name__ == "__main__":
   f=open("neko.txt.cabocha","r")
   l=[]
