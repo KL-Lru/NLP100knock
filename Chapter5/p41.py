@@ -19,47 +19,50 @@ class Chunk:
   def add_morph(self, morph):
     self.morphs.append(morph)
 
-  def out(self):
-    for i in self.morphs:
-      print(i.surface,end="")
-    print("",self.dst,self.srcs)
+  def stout(self):
+    st = "".join([i.surface for i in self.morphs])
+    st += " " + str(self.dst)
+    st += " " + str(self.srcs)
+    return st
 
-  def fout(self):
-    for i in self.morphs:
-      i.fout()
-  
   def morst(self):
     return "".join([i.surface if i.surface!="。" and i.surface!="、" else "" for i in self.morphs])
+#end Chunk
 
 def getChunk():
-  f=open("neko.txt.cabocha","r")
-  l=[]
-  s=[]
-  c=None
-  for i in f.readlines():
-    i=sub("(\ |\t)", ",",i)
-    a=i.split(",")
-    if a[0] == "*":
-      if(c is not None):
-        s.append(c) 
-      d=int(sub("^(.*)D","\\1",a[2]))
-      c=Chunk(d)
-    elif a[0] == "EOS\n":
-      if(c is not None):
-        s.append(c)
-        c=None
-      if s == []:
+  file = open("neko.txt.cabocha", "r")
+  list_sent = []
+  sentence = []
+  chu = None
+  for fi in file.readlines():
+    fi = sub("(\ |\t)", ",",fi)
+    ele = fi.split(",")
+    if ele[0] == "*":
+      if(chu is not None):
+        sentence.append(chu) 
+      dst = int(sub("^(.*)D","\\1",ele[2]))
+      chu = Chunk(dst)
+    elif ele[0] == "EOS\n":
+      if(chu is not None):
+        sentence.append(chu)
+        chu = None
+      if sentence == []:
         continue
-      for j in range(len(s)):
-        if s[j].dst != -1:
-          s[s[j].dst].add_src(j)
-      l.append(s)
-      s=[]
+      for j in range(len(sentence)):
+        if sentence[j].dst != -1:
+          sentence[sentence[j].dst].add_src(j)
+      list_sent.append(sentence)
+      sentence = []
     else:
-      c.add_morph(Morph(a[0],a[7],a[1],a[2]))
-  return l
+      chu.add_morph(Morph(surf = ele[0],
+                          base = ele[7],
+                          pos  = ele[1],
+                          pos1 = ele[2]))
+  file.close()
+  return list_sent
+#end getChunk
 
 if __name__ == "__main__":
-  l=getChunk()
-  for i in l[8]:
-    i.out() 
+  list_sent = getChunk()
+  answer = "\n".join([i.stout() for i in list_sent[8]])
+  print(answer)

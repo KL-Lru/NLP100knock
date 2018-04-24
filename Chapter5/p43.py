@@ -4,21 +4,21 @@
 from p41 import Chunk
 from p41 import getChunk
 
-def contain_noun(c):
-    for i in c.morphs:
-        if i.pos == "名詞":
+def contain_noun(chunk):
+    for morph in chunk.morphs:
+        if morph.pos == "名詞":
             return True
     return False
 
-def contain_verb(c):
-    for i in c.morphs:
-        if i.pos == "動詞":
+def contain_verb(chunk):
+    for morph in chunk.morphs:
+        if morph.pos == "動詞":
             return True
     return False
 
 if __name__ =="__main__":
-    l=getChunk()
-    for i in l:
-        for j in i:
-            if contain_noun(j) and contain_verb(i[j.dst]):
-                print(j.morst()+'\t'+i[j.dst].morst())
+    list_sent=getChunk()
+    for sent in list_sent:
+        for chunk in sent:
+            if contain_noun(chunk) and contain_verb(sent[chunk.dst]):
+                print(chunk.morst() + '\t' + sent[chunk.dst].morst())

@@ -12,18 +12,27 @@ class Morph:
     self.pos     = pos
     self.pos1    = pos1
 
-if __name__ == "__main__":
-  f=open("neko.txt.cabocha","r")
-  l=[]
-  s=[]
-  for i in f.readlines():
-    i=sub("(\ |\t)", ",",i)
-    a=i.split(",")
-    if a[0] == "*":
+def getMorphs():
+  file = open("neko.txt.cabocha","r")
+  list_sent = []
+  sentence = []
+  for fi in file.readlines():
+    fi = sub("(\ |\t)", ",",fi)
+    ele = fi.split(",")
+    if ele[0] == "*":
       continue
-    elif a[0] == "EOS\n":
-      l.append(s)
-      s=[]
+    elif ele[0] == "EOS\n":
+      list_sent.append(sentence)
+      sentence = []
     else:
-      s.append(Morph(a[0],a[7],a[1],a[2]))
-  print("".join([i.surface for i in l[2]]))
+      sentence.append(Morph(surf = ele[0],  
+                            base = ele[7],
+                            pos  = ele[1],
+                            pos1 = ele[2]))
+  file.close()
+  return list_sent  
+
+if __name__ == "__main__":
+  list_sent = getMorphs()
+  answer = "".join([i.surface for i in list_sent[2]])
+  print(answer)
