@@ -29,7 +29,7 @@ class Chunk:
       i.fout()
   
   def morst(self):
-    return "".join([i.surst() for i in self.morphs])
+    return "".join([i.surface if i.surface!="。" and i.surface!="、" else "" for i in self.morphs])
 
 def getChunk():
   f=open("neko.txt.cabocha","r")

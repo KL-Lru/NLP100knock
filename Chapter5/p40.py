@@ -12,15 +12,6 @@ class Morph:
     self.pos     = pos
     self.pos1    = pos1
 
-  def out(self):
-    print(self.surface,self.base,self.pos,self.pos1)
-
-  def fout(self):
-    print(self.surface,end="")
-
-  def surst(self):
-    return self.surface
-
 if __name__ == "__main__":
   f=open("neko.txt.cabocha","r")
   l=[]
@@ -35,6 +26,4 @@ if __name__ == "__main__":
       s=[]
     else:
       s.append(Morph(a[0],a[7],a[1],a[2]))
-  for i in l[2]:
-    i.fout() 
-  print()
+  print("".join([i.surface for i in l[2]]))
