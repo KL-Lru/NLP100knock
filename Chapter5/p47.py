@@ -1,18 +1,26 @@
+#!/usr/bin/env python3
 #
-# 動詞の格フレーム情報を抽出せよ
+# 機能動詞構文のマイニング
 #
 
-from p41 import getChunk
+from p41 import getChunks
 
 if __name__ == "__main__":
-  for i in getChunk():
-    for j in i:
-      if j.morphs[0].pos == "動詞":
-        mph=""
-        for k in j.srcs:
-          if i[k].morphs[-1].surface == "を" and i[k].morphs[-2].pos1 == "サ変接続":
-            mph=i[k].morst()+j.morphs[0].base
-        src=" ".join([i[x].morst() for x in j.srcs if i[x].morphs[-1].pos=="助詞" and x!=k])
-        con=" ".join([i[x].morphs[-1].surface for x in j.srcs if i[x].morphs[-1].pos=="助詞" and x!=k])
-        if mph != "" and src != '':
-          print(mph+"\t"+con+"\t"+src)
+  for sentence in getChunks():
+    for chunk in sentence:
+      if chunk.morphs[0].pos == "動詞":
+        predicate = ""
+        for si in chunk.srcs:
+          if sentence[si].morphs[-1].surface == "を" and sentence[si].morphs[-2].pos1 == "サ変接続":
+            predicate = sentence[si].morphs2str() + chunk.morphs[0].base
+        src = " ".join([x.morphs2str() for x in sorted([sentence[x] 
+                                               for x in chunk.srcs 
+                                               if sentence[x].morphs[-1].pos == "助詞" and x != si],
+                                       key = lambda x : x.morphs[-1].surface)])
+        con = " ".join(sorted([sentence[x].morphs[-1].surface 
+                               for x in chunk.srcs 
+                               if sentence[x].morphs[-1].pos == "助詞" and x != si]))
+        if predicate != "" and src != '':
+          print(predicate \
+                + "\t" + con \
+                + "\t" + src)

@@ -1,14 +1,14 @@
+#!/usr/bin/env python3
 #
 # 係り受け関係を示せ
 #
 
-from re import sub
-from pprint import pprint
-from p41 import getChunk
+from p41 import getChunks
 
 if __name__ == "__main__":
-  list_sent = getChunk()
-  for sent in list_sent:
-    for chunk in sent:
+  for sentence in getChunks():
+    for chunk in sentence:
       if chunk.dst != -1:
-        print(chunk.morst() + '\t' + sent[chunk.dst].morst())
+        print(chunk.morphs2str() \
+              + '\t' \
+              + sentence[chunk.dst].morphs2str())

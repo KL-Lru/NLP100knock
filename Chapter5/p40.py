@@ -1,9 +1,9 @@
+#!/usr/bin/env python3
 #
 # Morphクラスを作れ
 #
 
 from re import sub
-from pprint import pprint
 
 class Morph:
   def __init__(self, surf, base, pos, pos1):
@@ -11,28 +11,30 @@ class Morph:
     self.base    = base
     self.pos     = pos
     self.pos1    = pos1
+#end Morph
 
 def getMorphs():
   file = open("neko.txt.cabocha","r")
-  list_sent = []
+  list_sentence = []
   sentence = []
   for fi in file.readlines():
     fi = sub("(\ |\t)", ",",fi)
-    ele = fi.split(",")
-    if ele[0] == "*":
+    elements = fi.split(",")
+    if elements[0] == "*":
       continue
-    elif ele[0] == "EOS\n":
-      list_sent.append(sentence)
+    elif elements[0] == "EOS\n":
+      list_sentence.append(sentence)
       sentence = []
     else:
-      sentence.append(Morph(surf = ele[0],  
-                            base = ele[7],
-                            pos  = ele[1],
-                            pos1 = ele[2]))
+      sentence.append(Morph(surf = elements[0],  
+                            base = elements[7],
+                            pos  = elements[1],
+                            pos1 = elements[2]))
   file.close()
-  return list_sent  
+  return list_sentence
+#end def getMorphs
 
 if __name__ == "__main__":
-  list_sent = getMorphs()
-  answer = "".join([i.surface for i in list_sent[2]])
+  list_sentence = getMorphs()
+  answer = "".join([i.surface for i in list_sentence[2]])
   print(answer)

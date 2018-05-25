@@ -1,9 +1,9 @@
+#!/usr/bin/env python3
 #
 # Chunkクラスを作れ
 #
 
 from re import sub
-from pprint import pprint
 from p40 import Morph
 
 
@@ -19,50 +19,56 @@ class Chunk:
   def add_morph(self, morph):
     self.morphs.append(morph)
 
-  def stout(self):
+  #出力用関数
+  def str_out(self):
     st = "".join([i.surface for i in self.morphs])
     st += " " + str(self.dst)
     st += " " + str(self.srcs)
     return st
 
-  def morst(self):
-    return "".join([i.surface if i.surface!="。" and i.surface!="、" else "" for i in self.morphs])
-#end Chunk
+  def morphs2str(self):
+    return "".join([i.surface 
+                    for i in self.morphs
+                    if i.surface != "。" and i.surface != "、"])
+#end def Chunk
 
-def getChunk():
+def getChunks():
   file = open("neko.txt.cabocha", "r")
-  list_sent = []
+  list_sentence = []
   sentence = []
-  chu = None
+  chunks = None
   for fi in file.readlines():
     fi = sub("(\ |\t)", ",",fi)
-    ele = fi.split(",")
-    if ele[0] == "*":
-      if(chu is not None):
-        sentence.append(chu) 
-      dst = int(sub("^(.*)D","\\1",ele[2]))
-      chu = Chunk(dst)
-    elif ele[0] == "EOS\n":
-      if(chu is not None):
-        sentence.append(chu)
-        chu = None
+    elements = fi.split(",")
+    # next chunk
+    if elements[0] == "*":
+      if chunks is not None:
+        sentence.append(chunks) 
+      dst = int(sub("^(.*)D","\\1",elements[2]))
+      chunks = Chunk(dst)
+    #end sentence
+    elif elements[0] == "EOS\n":
+      if chunks is not None:
+        sentence.append(chunks)
+        chunks = None
       if sentence == []:
         continue
       for j in range(len(sentence)):
         if sentence[j].dst != -1:
           sentence[sentence[j].dst].add_src(j)
-      list_sent.append(sentence)
+      list_sentence.append(sentence)
       sentence = []
+    #add morph
     else:
-      chu.add_morph(Morph(surf = ele[0],
-                          base = ele[7],
-                          pos  = ele[1],
-                          pos1 = ele[2]))
+      chunks.add_morph(Morph(surf = elements[0],
+                             base = elements[7],
+                             pos  = elements[1],
+                             pos1 = elements[2]))
   file.close()
-  return list_sent
-#end getChunk
+  return list_sentence
+#end def getChunks
 
 if __name__ == "__main__":
-  list_sent = getChunk()
-  answer = "\n".join([i.stout() for i in list_sent[8]])
+  list_sentence = getChunks()()
+  answer = "\n".join([i.str_out() for i in list_sentence[8]])
   print(answer)

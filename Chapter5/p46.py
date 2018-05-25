@@ -1,18 +1,23 @@
+#!/usr/bin/env python3
 #
 # 動詞の格フレーム情報を抽出せよ
 #
 
-from p41 import getChunk
+from p41 import getChunks
 
 if __name__ == "__main__":
-  for i in getChunk():
-    for j in i:
-      if j.morphs[0].pos == "動詞":
+  for sentence in getChunks():
+    for chunk in sentence:
+      if chunk.morphs[0].pos == "動詞":
         src=[]
-        srcmph=[]
-        for k in j.srcs:
-          if i[k].morphs[-1].pos == "助詞":
-            src.append(i[k].morphs[-1].base)
-            srcmph.append(i[k].morst())
+        srcmorphs=[]
+        for si in chunk.srcs:
+          if sentence[si].morphs[-1].pos == "助詞":
+            src.append(sentence[si].morphs[-1].base)
+            srcmorphs.append(sentence[si])
         if src != []:
-          print(j.morphs[0].base+"\t"+" ".join(src)+"\t"+" ".join(srcmph))
+          print(chunk.morphs[0].base \
+                + "\t" + " ".join(sorted(src)) \
+                + "\t" + " ".join([x.morphs2str() 
+                                   for x in sorted(srcmorphs, 
+                                                   key = lambda x : x.morphs[-1].surface)]))
