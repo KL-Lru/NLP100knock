@@ -1,8 +1,10 @@
+import re
 from p50 import getSentences
 
 def getWords():
   sents = getSentences()
-  words = [x.split() for x in sents]
+  words = [re.sub("[\,\.\:\;\?\!]","",x).split() for x in sents]
   return words
 
-print("\n\n".join(["\n".join(x) for x in getWords()]))
+if __name__ == '__main__':
+  print("\n\n".join(["\n".join(x) for x in getWords()]))
