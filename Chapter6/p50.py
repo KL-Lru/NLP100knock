@@ -1,5 +1,4 @@
 import re
-from pprint import pprint
 
 def getSentences():
   f = open("nlp.txt")

@@ -1,6 +1,7 @@
 from p51 import getWords
 from nltk.stem.porter import PorterStemmer
 
+
 if __name__ == '__main__':
   ps = PorterStemmer()
   for si in getWords():
