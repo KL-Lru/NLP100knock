@@ -19,8 +19,8 @@ if __name__ == "__main__":
                     ))
     graph = pydot.Dot(graph_type = 'digraph')
     for edge in edges:
-      graph.add_node(pydot.Node(edge[0][0], label = i[0][1]))
-      graph.add_node(pydot.Node(edge[1][0], label = i[1][1]))
+      graph.add_node(pydot.Node(edge[0][0], label = edge[0][1]))
+      graph.add_node(pydot.Node(edge[1][0], label = edge[1][1]))
       graph.add_edge(pydot.Edge(edge[0][0], edge[1][0]))
     graph.write_png('graph' + str(graph_num) + '.png')
     graph_num += 1

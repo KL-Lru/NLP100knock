@@ -1,20 +1,18 @@
-#!/usr/bin/env python3
-#
-# split -l N hightemp.txt
-#
+# ファイルを行単位でN分割せよ
+# split -n l/N hightemp.txt
 
-from math import ceil
+from p12 import fileOut
 
 if __name__ == "__main__":
-  n = int(input())
-  file = open("hightemp.txt", "r")
-  lines = file.readlines()
-  line_num= len(lines)
-  file.close()
-  lf_point = 0
-  for i in range(n):
-    br_point = ceil((line_num-lf_point) / (n-i))
-    file = open("split_txt" + str(i), "w+")
-    file.write("".join(lines[lf_point : lf_point+br_point]))
-    lf_point += br_point
-    file.close()
+    n = int(input())
+    fobj = open("hightemp.txt", "r")
+    lines = fobj.readlines()
+    lines_num = len(lines)
+    sp_lines_num = lines_num // n
+    ad_lines_num = lines_num % n
+    line_cnt = 0
+    print('Out split[0-9]+ .')
+    for idx in range(n):
+        qty = sp_lines_num + (1 if idx < ad_lines_num else 0)
+        fileOut('split_' + str(idx), "".join(lines[line_cnt:line_cnt + qty]))
+        line_cnt += qty

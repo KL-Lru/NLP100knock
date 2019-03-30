@@ -1,10 +1,8 @@
-#!/usr/bin/env python3
-#
+# タブをスペースに置換せよ
 # sed "s/\t/ /g" hightemp.txt
-#
 
 if __name__ == "__main__":
-  file=open("hightemp.txt", "r")
-  answer=file.read().replace("\t", " ")
-  file.close()
-  print(answer)
+    fobj = open("hightemp.txt", "r")
+    answer = fobj.read().replace("\t", " ")
+    fobj.close()
+    print(answer)

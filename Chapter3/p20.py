@@ -1,17 +1,16 @@
-#!/usr/bin/env python3
-#
 # jsonを読み込め
-#
-from json import loads as jsloads
-from gzip import open as gzopen
+import json
+import gzip
 
-def get_json():
-  with gzopen("jawiki-country.json.gz","rt") as file:
-    for line in file:
-      js = jsloads(line)
-      if "イギリス" == js["title"]:
-        return js["text"]
+
+def getUKText():
+    with gzip.open("jawiki-country.json.gz", "rt") as lines:
+        for line in lines:
+            js = json.loads(line)
+            if "イギリス" == js["title"]:
+                return js["text"]
+# end def
 
 if __name__ == "__main__":
-    answer = get_json()
+    answer = getUKText()
     print(answer)
