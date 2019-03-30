@@ -1,19 +1,16 @@
-#!/usr/bin/env python3
-#
 # 「AのB」となる名詞句を全て抽出せよ
-#
 
-from p30 import get_mecab
+from p30 import getMecabData
 
 if __name__ == "__main__":
-  analysis = get_mecab()
-  answer = []
-  for ai in analysis:
-    for j in range(len(ai)-2):
-      if ai[j]["pos"] == "名詞" \
-        and ai[j+1]["surface"] == "の" \
-        and ai[j+2]["pos"] == "名詞":
-        answer.append(ai[j]["surface"] \
-                  + ai[j+1]["surface"] \
-                  + ai[j+2]["surface"])
-  print(answer)
+    analysis = getMecabData()
+    answer = []
+    for sentence in analysis:
+        for idx in range(len(sentence)-2):
+            if sentence[idx]["pos"] == "名詞" \
+                    and sentence[idx+1]["surface"] == "の" \
+                    and sentence[idx+2]["pos"] == "名詞":
+                answer.append(sentence[idx]["surface"]
+                              + sentence[idx+1]["surface"]
+                              + sentence[idx+2]["surface"])
+    print(answer)

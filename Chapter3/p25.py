@@ -1,28 +1,27 @@
-#!/usr/bin/env python3
-#
 # 基礎情報を辞書型に格納せよ
-#
-from p20 import get_json
-from re import sub
-from re import DOTALL
+from p20 import getUKText
 from pprint import pprint
+import re
 
 # re.DOTALL: .に\nを含ませる
-# answer={sub("^(.*?) = .*","\\1",st,flags=DOTALL):sub(".* = (.*)","\\1",st,flags=re.DOTALL) for st in sub(".*(\{\{基礎情報.*?\n)}}.*","\\1",get_json(),flags=DOTALL).split("\n|")[1:]}
+def getBaseInfoText():
+    res = re.search("\{\{(基礎情報.*?)\n}}",
+                    getUKText(),
+                    flags=re.DOTALL)
+    text = res.group(1)
+    return text
+# end def
+
+def convertDict(text):
+    dic = {}
+    for line in text.split("\n|")[1:]:
+        res = re.search('^(?P<key>.*?) = (?P<value>.*)',
+                        line,
+                        flags=re.DOTALL)
+        dic[res.group('key')] = res.group('value')
+    return dic
+# end def
+
 if __name__ == "__main__":
-  text = sub(".*\{\{(基礎情報.*?)\n}}.*", 
-             "\\1", 
-             get_json(), 
-             flags = DOTALL)
-  answer = {}
-  for line in text.split("\n|")[1:]:
-    key = sub("^(.*?) = .*", 
-               "\\1", 
-               line, 
-               flags = DOTALL)
-    value = sub(".* = (.*)", 
-                "\\1", 
-                line, 
-                flags = DOTALL)
-    answer[key] = value
-  pprint(answer)
+    answer = convertDict(getBaseInfoText())
+    pprint(answer)

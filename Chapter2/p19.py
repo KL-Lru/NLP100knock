@@ -1,29 +1,15 @@
-#!/usr/bin/env python3
-#
+# 1列目の出現頻度順に県名を出力せよ
 # cut -f1 hightemp.txt | sort | uniq -c | sort -r | awk '{print $2}'
-#
 
 if __name__ == "__main__":
-  file = open("hightemp.txt", "r")
-  pref = [x.split("\t")[0] for x in file.readlines()]
-  s = set()
-  cnt_pref = []
-  # 内包表現でもいけるけど読みづらい
-  # cnt_pref = [[pref.count(x), x] for x in pref if x not in s and not s.add(x)]
-  for pi in pref:
-    if pi not in s:
-      s.add(pi)
-      cnt_pref.append([pref.count(pi), pi])
-  # lambda式使うとこれだけで出来る
-  # cnt_pref.sort(key=lambda x:x[0]) 
-  # 以下無難なバブルソート
-  for i in range(len(cnt_pref)):
-    for j in range(len(cnt_pref)-1, i, -1):
-      if cnt_pref[j][0] < cnt_pref[j-1][0]:
-        tmp = cnt_pref[j]
-        cnt_pref[j] = cnt_pref[j-1]
-        cnt_pref[j-1] = tmp
-  cnt_pref.reverse()
-  answer = "\n".join([x[1] for x in cnt_pref])
-  file.close()
-  print(answer)
+    fobj = open("hightemp.txt", "r")
+    prefs = [line.split("\t")[0] for line in fobj.readlines()]
+    pref_set = set()
+    cnt_pref = [[prefs.count(pref), pref]
+                 for pref in prefs
+                 if pref not in pref_set and not pref_set.add(pref)] 
+    cnt_pref.sort(key = lambda pref_t:pref_t[0])
+    cnt_pref.reverse()
+    answer = "\n".join([pref_t[1] for pref_t in cnt_pref])
+    fobj.close()
+    print(answer)
