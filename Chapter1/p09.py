@@ -2,16 +2,18 @@
 
 import random
 
-if __name__ == "__main__":
-    text = """
+def shuffle(segment):
+    return ''.join(random.sample(segment, len(segment)))
+
+if __name__ == '__main__':
+    text = '''
         I couldn't believe that I could actually understand what I was reading 
         : the phenomenal power of the human mind .
-        """
+    '''
     words = text.split()
-    for idx in range(len(words)):
-        if len(words[idx]) > 4 :
-            words[idx] = words[idx][0] \
-                      + "".join(random.sample(words[idx][1:-1], len(words[idx])-2)) \
-                      + words[idx][-1]
-    answer = " ".join(words)
+    shuffled_words = [
+        word if len(word) <= 4 else word[0] + shuffle(word[1:-1]) + word[-1]
+        for word in words
+    ]
+    answer = ' '.join(shuffled_words)
     print(answer)

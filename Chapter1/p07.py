@@ -2,9 +2,9 @@
 # さらに，x=12, y="気温", z=22.4として，実行結果を確認せよ．
 
 def case_string(x, y, z):
-    return "%s時の%sは%s" % (x, y, z)
+    return f'{x}時の{y}は{z}'
 #end def
 
-if __name__ == "__main__":
-    answer = case_string(12, "気温", 22.4)
+if __name__ == '__main__':
+    answer = case_string(12, '気温', 22.4)
     print(answer)

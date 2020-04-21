@@ -3,21 +3,19 @@
 
 from p05         import n_gram 
 from pprint      import pprint
-from collections import OrderedDict
 
-if __name__ == "__main__":
-    text1 = "paraparaparadise"
-    text2 = "paragraph"
-    x = set(n_gram(n    = 2,
-                   mode = 'char',
-                   text = text1))
-    y = set(n_gram(n    = 2,
-                   mode = 'char',
-                   text = text2))
-    answer = OrderedDict() #確認用に入力した順序を保つ
-    answer["union"]        = x.union(y)
-    answer["intersection"] = x.intersection(y)
-    answer["difference"]   = x.symmetric_difference(y)
-    answer["se in x?"]     = "se" in x
-    answer["se in y?"]     = "se" in y
+if __name__ == '__main__':
+    text1 = 'paraparaparadise'
+    text2 = 'paragraph'
+    x = set(n_gram(n        = 2,
+                   sequence = text1))
+    y = set(n_gram(n        = 2,
+                   sequence = text2))
+    answer = {
+        'union'       : x.union(y),
+        'intersection': x.intersection(y),
+        'difference'  : x.symmetric_difference(y),
+        '"se" in x'   : 'se' in x,
+        '"se" in y'   : 'se' in y,
+    }
     pprint(answer)
