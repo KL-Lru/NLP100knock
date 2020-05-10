@@ -1,15 +1,9 @@
 # 先頭N行を出力せよ
-# head -n N hightemp.txt
+# head -n N popular-names.txt
 
 if __name__ == "__main__":
     n      = int(input())
-    cnt    = 0
-    answer = ""
-    fobj = open("hightemp.txt", "r")
-    for line in fobj.readlines():
-        answer += line
-        cnt    += 1
-        if cnt == n:
-            break
+    fobj   = open("popular-names.txt", "r")
+    answer = "".join(fobj.readlines()[:n])
     fobj.close()
     print(answer)

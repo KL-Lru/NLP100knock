@@ -1,8 +1,8 @@
 # 行数をカウントせよ
-# wc -l hightemp.txt
+# wc -l popular-names.txt
 
 if __name__ == "__main__":
-    fobj = open("hightemp.txt", "r")
+    fobj = open("popular-names.txt", "r")
     answer = len(fobj.readlines())
     fobj.close()
     print(answer)

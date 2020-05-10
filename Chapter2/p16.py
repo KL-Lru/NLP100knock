@@ -1,11 +1,11 @@
 # ファイルを行単位でN分割せよ
-# split -n l/N hightemp.txt
+# split -n l/N popular-names.txt
 
 from p12 import fileOut
 
 if __name__ == "__main__":
     n = int(input())
-    fobj = open("hightemp.txt", "r")
+    fobj = open("popular-names.txt", "r")
     lines = fobj.readlines()
     lines_num = len(lines)
     sp_lines_num = lines_num // n
