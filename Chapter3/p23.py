@@ -4,7 +4,7 @@ from pprint import pprint
 import re
 
 if __name__ == "__main__":
-    answer = [ [re.sub("=", "", line), int(line.count("=")/2 - 1)] 
+    answer = [ [line.replace("=", "").strip(), int(line.count("=")/2 - 1)] 
                for line in getUKText().split("\n") 
-               if re.match("==", line)]
+               if re.match(r"==", line)]
     pprint(answer)

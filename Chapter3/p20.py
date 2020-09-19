@@ -2,7 +2,6 @@
 import json
 import gzip
 
-
 def getUKText():
     with gzip.open("jawiki-country.json.gz", "rt") as lines:
         for line in lines:
