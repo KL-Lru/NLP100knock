@@ -1,19 +1,16 @@
-# 単語の出現頻度を求め, 高い順に並べよ
+# 単語の出現頻度を求め, 高い順から10個をグラフ化せよ
 
 from p30 import getMecabData
-from pprint import pprint
+from p35 import calcFrequency
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+rcParams['font.family'] = 'Myrica M'
 
 if __name__ == "__main__":
     analysis = getMecabData()
-    calc = {}
-    for sentence in analysis:
-        for word in sentence:
-            if word["base"] in calc.keys():
-                calc[word["base"]] += 1
-            else:
-                calc[word["base"]] = 1
-    freqs_list = sorted(calc.items(),
-                        key = lambda x:x[1],
-                        reverse=True)
-    answer = [word for (word, freq) in freqs_list]
-    pprint(answer)
+    freqs_list = calcFrequency(analysis)
+    data = freqs_list[:10]
+    left   = [x[0] for x in data]
+    height = [x[1] for x in data]
+    plt.bar(left, height)
+    plt.show()

@@ -11,12 +11,17 @@ def getMecabData():
     res = []
     sentence = []
     for line in fobj.readlines():
-        if line == "EOS\n":
+        line = line.strip()
+        if line == "": 
+            continue
+        if line == "EOS":
             res.append(sentence)
             sentence = []
             continue
         else:
-            word = line[:-1].split(",")  # 改行記号抜き
+            word = line.split(",")
+            if word[0] == "":
+                continue
             info = {"surface": word[0],
                     "base"   : word[7],
                     "pos"    : word[1],
