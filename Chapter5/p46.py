@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-#
 # 動詞の格フレーム情報を抽出せよ
-#
 
 from p41 import getChunks
 

@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-#
 # 名詞から根までのパスを出力せよ
-#
 
 from p41 import getChunks
 
@@ -12,7 +9,7 @@ def print_path(sentence, src):
     print_path(sentence, sentence[src].dst)
   else:
     print("")
-#end def print_path
+# end def print_path
 
 if __name__ == "__main__":
   for sentence in getChunks():

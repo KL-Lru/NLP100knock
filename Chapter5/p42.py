@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-#
 # 係り受け関係を示せ
-#
 
 from p41 import getChunks
 

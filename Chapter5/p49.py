@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-# 
 # 名詞間の係り受けパスの抽出
-#
 
 from p40 import Morph
 from p41 import getChunks
@@ -9,7 +6,6 @@ from p43 import contain_noun
 from copy import deepcopy
 
 if __name__ == "__main__":
-  # for sentence in getChunks()[5:6]: # 見易い出力例
   for sentence in getChunks():
     # 名詞句集め
     nouns = []

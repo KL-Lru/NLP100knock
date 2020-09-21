@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-#
 # 機能動詞構文のマイニング
-#
 
 from p41 import getChunks
 

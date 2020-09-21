@@ -1,14 +1,11 @@
-#!/usr/bin/env python3
-#
 # 係り受け関係を図示せよ
-#
 
 import pydot
 from p41 import getChunks
 
 if __name__ == "__main__":
   graph_num = 0
-  for sentence in getChunks():
+  for sentence in getChunks()[:4]:
     edges = []
     for cn in range(len(sentence)):
       if sentence[cn].dst != -1:

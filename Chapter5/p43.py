@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-#
 # 名詞を含む文節⇒動詞を含む文節を抽出
-#
 from p41 import getChunks
 
 def contain_noun(chunk):
